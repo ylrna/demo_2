@@ -1,3 +1,8 @@
+package com.demo;
+
+import com.demo.IllegalInputException;
+import com.demo.MyException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,7 +41,13 @@ public class demo {
    public static ArrayList<String> get_letter_combinations(int arr[]) throws Exception {
 //     初始化
        if(arr == null || arr.length == 0){
-           throw new Exception();
+           throw new MyException("传入的参数为空");
+       }
+
+       for(int i = 0;i < arr.length;i++){
+           if(arr[i] < 0 || arr[i]>99){
+               throw new IllegalInputException("输入非法，请输入[0-99]的数字");
+           }
        }
        init();
        ArrayList<String> res = new ArrayList<String>();
@@ -64,7 +75,7 @@ public class demo {
    }
 
    public static void main(String[] args){
-       int arr[] = {9};
+       int arr[] = {4,5};
        ArrayList<String> res = null;
        try {
            res = get_letter_combinations(arr);
